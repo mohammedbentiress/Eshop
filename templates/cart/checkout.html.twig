@@ -1,0 +1,267 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+            
+        <!-- Checkout Start -->
+        <div class="checkout">
+            <div class="container"> 
+                <div class="row">
+                
+                {{ form_start(form) }}
+                <div class ="row">
+                    <div class="col-md-6">
+                        <div class="billing-address">
+                            <h2>Billing Address</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>{% trans %} First Name* {% endtrans %} </label>
+                                    {{ form_widget(form.firstName ,{'attr': {'class': 'form-control', 'placeholder': 'First Name'}}) }}
+                                    {{ form_errors(form.firstName) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{% trans %} Last Name* {% endtrans %}</label>
+                                    {{ form_widget(form.lastName ,{'attr': {'class': 'form-control', 'placeholder': 'Last Name'}}) }}
+                                    {{ form_errors(form.lastName) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label> {% trans %} E-mail* {% endtrans %}</label>
+                                    {{ form_widget(form.Email ,{'attr': {'class': 'form-control', 'placeholder': 'E-mail'}}) }}
+                                    {{ form_errors(form.Email) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label> {% trans %} Mobile No* {% endtrans %} </label>
+                                    {{ form_widget(form.mobileNumber ,{'attr': {'class': 'form-control', 'placeholder': 'Mobile number'}}) }}
+                                    {{ form_errors(form.mobileNumber) }}
+                                </div>
+                                <div class="col-md-12">
+                                    <label>{% trans %} Address* {% endtrans %}</label>
+                                    {{ form_widget(form.address ,{'attr': {'class': 'form-control', 'placeholder': 'Adress'}}) }}
+                                    {{ form_errors(form.address) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{% trans %} City* {% endtrans %}</label>
+                                    {{ form_widget(form.city ,{'attr': {'class': 'form-control', 'placeholder': 'City'}}) }}
+                                    {{ form_errors(form.city) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{% trans %} State {% endtrans %}</label>
+                                    {{ form_widget(form.state ,{'attr': {'class': 'form-control', 'placeholder': 'State'}}) }}
+                                    {{ form_errors(form.state) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{% trans %}ZIP Code* {% endtrans %}</label>
+                                    {{ form_widget(form.postalCode ,{'attr': {'class': 'form-control', 'placeholder': 'ZIP Code'}}) }}
+                                    {{ form_errors(form.postalCode) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{% trans %} Country* {% endtrans %}</label>
+                                    {{ form_widget(form.country ,{'attr': {'class': 'form-control', 'placeholder': 'country'}}) }}
+                                    {{ form_errors(form.country) }}
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="newaccount">
+                                        <label class="custom-control-label" for="newaccount">Create an account</label>
+                                        {{ form_widget(form.createAcc ,{'attr': {'class': 'custom-control-input'}}) }}
+                                    </div>
+                                </div>
+                                {# <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="shipto">
+                                        <label class="custom-control-label" for="shipto">Ship to different address</label>
+                                    </div>
+                                </div> #}
+                            </div>
+                        </div>
+                        
+                        {# <div class="shipping-address">
+                            <h2>Shipping Address</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>First Name</label>
+                                    <input class="form-control" type="text" placeholder="First Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last Name"</label>
+                                    <input class="form-control" type="text" placeholder="Last Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>E-mail</label>
+                                    <input class="form-control" type="text" placeholder="E-mail">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Mobile No</label>
+                                    <input class="form-control" type="text" placeholder="Mobile No">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Address</label>
+                                    <input class="form-control" type="text" placeholder="Address">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Country</label>
+                                    <select class="custom-select">
+                                        <option selected>United States</option>
+                                        <option>Afghanistan</option>
+                                        <option>Albania</option>
+                                        <option>Algeria</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>City</label>
+                                    <input class="form-control" type="text" placeholder="City">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>State</label>
+                                    <input class="form-control" type="text" placeholder="State">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ZIP Code</label>
+                                    <input class="form-control" type="text" placeholder="ZIP Code">
+                                </div>
+                            </div>
+                        </div> #}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="checkout-summary">
+                            <h2>{% trans %}Cart Total {% endtrans %}</h2>
+                            <div class="checkout-content">
+                                <h3>{% trans %}Products {% endtrans %}</h3>
+                                {% if order is not same as null %}
+                                    {% for orderLine in order.orderLines %}
+                                        <p>{{orderLine.product.label}}
+                                            <span>${{ orderLine.product.unitPrice | number_format(2, ',', ' ') }} x {{ orderLine.quantity }}</span>
+                                        </p>
+                                    {% endfor %}
+                                    <p class="sub-total">{% trans %}Sub Total {% endtrans %}
+                                        <span>${{ order.calculateTotoal | number_format(2, ',', ' ') }}</span>
+                                    </p>
+                                    <p class="ship-cost">{% trans %}Shipping Cost {% endtrans %}
+                                        <span>$1</span>
+                                    </p>
+                                    <h4>{% trans %} Grand Total {% endtrans %}<span>${{ (order.calculateTotoal + 1) | number_format(2, ',', ' ') }}</span></h4>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="checkout-payment">
+                            <h2>{% trans %}Payment Methods {% endtrans %}</h2>
+                            <div class="payment-methods">
+                                <div class="payment-method">
+                                    <div class="custom-control custom-radio">
+                                        {{ form_widget(form.paymentMethode.children[0] ,{'attr': {'class': 'custom-control-input'}}) }}
+                                        <label class="custom-control-label" for="checkout_paymentMethode_0">{% trans %}Paypal {% endtrans %}</label>
+                                    </div>
+                                    <div class="payment-content" id="checkout_paymentMethode_0-show">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="custom-control custom-radio">
+                                        {{ form_widget(form.paymentMethode.children[1] ,{'attr': {'class': 'custom-control-input'}}) }}
+                                        <label class="custom-control-label" for="checkout_paymentMethode_1">Payoneer</label>
+                                    </div>
+                                    <div class="payment-content" id="checkout_paymentMethode_1-show">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="custom-control custom-radio">
+                                        {{ form_widget(form.paymentMethode.children[2] ,{'attr': {'class': 'custom-control-input'}}) }}
+                                        <label class="custom-control-label" for="checkout_paymentMethode_2">{% trans %}Check Payment {% endtrans %}</label>
+                                    </div>
+                                    <div class="payment-content" id="checkout_paymentMethode_2-show">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="custom-control custom-radio">
+                                        {{ form_widget(form.paymentMethode.children[3] ,{'attr': {'class': 'custom-control-input'}}) }}
+                                        <label class="custom-control-label" for="checkout_paymentMethode_3">{% trans %}Direct Bank Transfer {% endtrans %}</label>
+                                    </div>
+                                    <div class="payment-content" id="checkout_paymentMethode_3-show">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="custom-control custom-radio">
+                                        {{ form_widget(form.paymentMethode.children[4] ,{'attr': {'class': 'custom-control-input'}}) }}
+                                        <label class="custom-control-label" for="checkout_paymentMethode_4">{% trans %}Cash on Delivery {% endtrans %}</label>
+                                    </div>
+                                    <div class="payment-content" id="checkout_paymentMethode_4-show">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout-btn">
+                                <button>{% trans %}Place Order {% endtrans %}</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                      {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <!-- Checkout End -->
+
+{% endblock %}
+
+{# {% block text_widget %}
+    <input class="form-control" value="{{ value }}" id="{{ id }}" name="{{ full_name }}" type="text"/>
+{% endblock %}
+{% block textarea_widget %}
+    <textarea class="form-control" id="{{ id }}" name="{{ full_name }}">{{ value }}</textarea>
+{% endblock %}
+{% block email_widget %}
+    <input class="form-control" value="{{ value }}" id="{{ id }}" name="{{ full_name }}" type="text"/>
+{% endblock %}
+{% block choice_widget %}
+    {% if expanded %}
+        {{ block('choice_widget_expanded') }}
+    {% else %}
+        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %} class="custom-select">
+            <option value="">{{ placeholder }}</option>
+            {% set options = choices %}
+            {{ block('options') }}
+        </select>
+    {% endif %}
+{% endblock %}
+{% block options %}
+    {% for group_label, choice in options %}
+        <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+    {% endfor %}
+{% endblock %}
+{%- block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <div class="payment-method">
+                <div class="custom-control custom-radio">
+                    {{ form_widget(child) }}
+                    {{ form_label(child, null, {translation_domain: choice_translation_domain}, {'attr': {'class': 'custom-control-label'}}) }}
+                </div>
+            </div>
+        {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        <div class="alert alert-danger mt-0 ">
+            {% for error in errors %}
+                <p class=" p-0">{{ error.message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %} #}

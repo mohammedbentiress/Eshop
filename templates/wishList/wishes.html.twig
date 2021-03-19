@@ -1,0 +1,85 @@
+{# {% form_theme form _self %} if you wish to apply theme from the current file #}
+{% form_theme form 'form/wishes_theme.html.twig' %}{# when use an external theme #}
+{% extends 'base.html.twig' %}
+{% block title %} {% trans %} My cart {% endtrans %} {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumb-wrap">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('default') }}">Home</a></li>
+                <li class="breadcrumb-item active">WishList</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="cart-page">
+        <div class="container">
+            {% if cart is null or cart.orderLines|length == 0 %}
+                <div class="alert alert-warning" role="alert">
+                    {% trans %} Your cart is empty. {% endtrans %} <a href="{{ url('default') }}"> {% trans %} Start shopping {% endtrans %}</a>
+                </div>
+            {% else %}
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>{% trans %} Image {% endtrans %}</th>
+                                    <th>{% trans %} Name {% endtrans %}</th>
+                                    <th>{% trans %} Price {% endtrans %}</th>
+                                    <th>{% trans %} Quantity {% endtrans %}</th>
+                                    <th>{% trans %} Add to Cart {% endtrans %}</th>
+                                    <th>{% trans %} Remove {% endtrans %}</th>
+                                </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                {% for item in form.orderLines %}
+                                    {{ form_row(item) }}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-md-6">
+                        <div class="cart-summary">
+                            <div class="cart-btn">
+                                <button type="submit">{% trans %} Update WishList {% endtrans %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('button.delete_row').on('click', function () {
+                var $object = $(this).parents().eq(1);
+                $object.remove();
+            });
+        }())
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <style type="text/css">
+        .cart-page .cart-summary .cart-btn label {
+            width: calc(50% - 15px);
+            padding: 11px;
+            text-align: center;
+            background: #3F69AA;
+            border: none;
+        }
+        .cart-page .cart-summary .cart-btn label a {
+            color: #ffffff;
+        }
+    </style>
+{% endblock %}

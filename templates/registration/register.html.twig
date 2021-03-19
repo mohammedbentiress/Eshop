@@ -1,0 +1,54 @@
+{% block stylesheets %}
+    <style>
+        .email-block{
+            display:block;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    {# {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %} #}
+    
+    <div class="col-md-6">
+        {{ form_start(registrationForm) }}  
+        {{ form_errors(registrationForm) }} 
+        <div class="register-form">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>First Name</label>
+                    {{ form_widget(registrationForm.firstName) }}
+                    {{ form_errors(registrationForm.firstName) }}
+
+                </div>
+                <div class="col-md-6">
+                    <label>Last Name</label>
+                    {{ form_widget(registrationForm.lastName) }}
+                    {{ form_errors(registrationForm.lastName) }}
+                </div>
+                <div class="col-md-12">
+                    <label>E-mail</label>
+                    <div class="email-block" >
+                    {{ form_widget(registrationForm.email) }}
+                    {{ form_errors(registrationForm.email) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Password</label>
+                    {{ form_widget(registrationForm.password.first) }}
+                    {{ form_errors(registrationForm.password.first) }}
+                </div>
+                <div class="col-md-6">
+                    <label>Repeat password</label>
+                    {{ form_widget(registrationForm.password.second) }}
+                    {{ form_errors(registrationForm.password.second) }}
+                </div>
+                {{ form_row(registrationForm.agreeTerms) }}
+                <div class="col-md-12">
+                    <button type="submit" class="btn">Register</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

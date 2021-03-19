@@ -1,0 +1,33 @@
+{% set cItems = cart is null ? 0 : cart.orderLines|length %}
+{% set wItems = cart is null ? 0 : wishes.orderLines|length %}
+<div class="user">
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}My Account {% endtrans %} </a>
+        <div class="dropdown-menu">
+        {% if app.user %}
+            <a href="{{path('app_logout')}}" class="dropdown-item">{% trans %}Logout{% endtrans %}</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path('dashboard')}}" class="account_circle  dropdown-item">Administration</a>
+            {% endif %}
+        {% else %}
+            <a href="{{path('app_login')}}" class="dropdown-item">{% trans %}Login{% endtrans %}</a>
+        {% endif %}
+        </div>
+    </div>
+    {% for lang in locales %}
+        {% if lang is not same as app.request.locale %}
+            <a href="{{ path('change_local', {local:lang} )}}"><img class="ln-switcher"  src="{{ asset("assets/img/"~lang~".png") }}"></a>
+        {% endif %}
+    {% endfor %}
+    <div class="cart">
+        <a href="{{ url('cart') }}">
+            <i class="fa fa-cart-plus"></i>
+            <span>({{ cItems }})</span>
+        </a>
+        <a href="{{ url('wishesList') }}">
+            <i class="fa fa-heart"></i>
+            <span>({{ wItems }})</span>
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,93 @@
+
+<div class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h1>E Shop</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin rutrum massa. Suspendisse sollicitudin rutrum massa. Vestibulum porttitor, metus sed pretium elementum, nisi nibh sodales quam, non lobortis neque felis id mauris.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">{% trans %}Useful Pages{% endtrans %} </h3>
+                    <ul>
+                        <li><a href="{{url('home')}}">{% trans %} Product{% endtrans %} </a></li>
+                        <li><a href="{{url('home')}}">{% trans %}Product Detail{% endtrans %} </a></li>
+                        <li><a href="{{url('cart')}}">{% trans %}Cart{% endtrans %}</a></li>
+                        <li><a href="{{url('checkout')}}">{% trans %}Checkout{% endtrans %}</a></li>
+                        <li><a href="login.html">{% trans %}Login {% endtrans %}& {% trans %}Register{% endtrans %}</a></li>
+                        <li><a href="my-account.html">{% trans %}My Account{% endtrans %}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">{% trans %} Quick Links {% endtrans %}</h3>
+                    <ul>
+                        <li><a href="{{url('home')}}">{% trans %} Product {% endtrans %} </a></li>
+                        <li><a href="{{url('cart')}}">{% trans %}Cart{% endtrans %}</a></li>
+                        <li><a href="{{url('checkout')}}">{% trans %}Checkout{% endtrans %}</a></li>
+                        <li><a href="login.html">{% trans %}Login{% endtrans %} & {% trans %}Register{% endtrans %}</a></li>
+                        <li><a href="my-account.html">{% trans %}My Account{% endtrans %}</a></li>
+                        <li><a href="{{url('wishesList')}}">{% trans %}Wishlist{% endtrans %}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">{% trans %} Get in Touch {% endtrans %}</h3>
+                    <div class="contact-info">
+                        <p><i class="fa fa-map-marker"></i>123 E Shop, Los Angeles, CA, USA</p>
+                        <p><i class="fa fa-envelope"></i>email@example.com</p>
+                        <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                        <div class="social">
+                            <a href=""><i class="fa fa-twitter"></i></a>
+                            <a href=""><i class="fa fa-facebook"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                            <a href=""><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+    <div class="row payment">
+        <div class="col-md-6">
+            <div class="payment-method">
+                <p>{% trans %}We Accept:{% endtrans %}</p>
+                <img src="{{asset('assets/img/payment-method.png')}}" alt="Payment Method" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="payment-security">
+                <p>{% trans %}Secured By: {% endtrans %}</p>
+                <img src="{{asset('assets/img/godaddy.svg')}}" alt="Payment Security" />
+                <img src="{{asset('assets/img/norton.svg')}}" alt="Payment Security" />
+                <img src="{{asset('assets/img/ssl.svg')}}" alt="Payment Security" />
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. {% trans %}All Rights Reserved {% endtrans %}</p>
+            </div>
+            <div class="col-md-6 template-by">
+                <p>{% trans %}Template By {% endtrans %} <a href="https://htmlcodex.com">HTML Codex</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
