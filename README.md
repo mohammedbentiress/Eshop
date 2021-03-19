@@ -14,3 +14,4 @@
 - Pour charger les fausses données **php bin/console doctrine:fixtures:load**
 - Repo GIT pour les différents [exemples][git-repo]
 
+   [git-repo]: <https://github.com/mohammedbentiress/Eshop>
