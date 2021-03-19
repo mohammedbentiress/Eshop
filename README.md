@@ -2,7 +2,7 @@
 
 # CONSOLE COMMANDE
 
-- Une commande symfony permettant de lister les blog enregistrés
+- Une commande symfony permettant de lister les lignes de commandes (orders) enregistrés
 - Gestion des erreurs
 - En respectant  Lifecycle d'une commande
    
