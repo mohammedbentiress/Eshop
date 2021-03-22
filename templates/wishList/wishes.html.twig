@@ -17,7 +17,7 @@
         <div class="container">
             {% if cart is null or cart.orderLines|length == 0 %}
                 <div class="alert alert-warning" role="alert">
-                    {% trans %} Your cart is empty. {% endtrans %} <a href="{{ url('default') }}"> {% trans %} Start shopping {% endtrans %}</a>
+                    {% trans %} Your wishes list is empty. {% endtrans %} <a href="{{ url('default') }}"> {% trans %} Start shopping {% endtrans %}</a>
                 </div>
             {% else %}
                 {{ form_start(form) }}

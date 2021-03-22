@@ -56,7 +56,7 @@ class Cart
      */
     public function addToCart(OrderLine $line)
     {
-        $order = $this->initialize();
+        $order = $this->getCart();
         $order->addOrderLine($line);
         $this->session->set('CART', $order);
     }

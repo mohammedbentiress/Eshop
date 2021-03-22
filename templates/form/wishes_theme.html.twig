@@ -1,4 +1,5 @@
 {% block _order_orderLines_entry_row  %}
+    {% if value.product is not same as null %}
     {% set product = value.product %}
     <tr>
         <td>
@@ -18,6 +19,7 @@
             <button class="delete_row"><i class="fa fa-trash"></i></button>
         </td>
     </tr>
+    {% endif %}
 {% endblock %}
 {% block _order_orderLines_entry_widget %}
     <div class="qty">

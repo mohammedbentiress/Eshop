@@ -15,7 +15,7 @@ class Order
 {
     const ORDER_INITIATED = 0;
     const ORDER_PLACED = 1;
-    const ORDER_DELIVRED =2;
+    const ORDER_DELIVRED = 2;
 
     /**
      * @ORM\Id
@@ -131,8 +131,12 @@ class Order
         return $this;
     }
 
+    /**
+     * Remove an orderline from order if found.
+     */
     public function removeOrderLine(OrderLine $orderLine): self
     {
+        dump($this->orderLines->removeElement($orderLine));
         if ($this->orderLines->removeElement($orderLine)) {
             // set the owning side to null (unless already changed)
             if ($orderLine->getCart() === $this) {
@@ -144,16 +148,17 @@ class Order
     }
 
     /**
-     * Calculate the sub-total of the current order 
+     * Calculate the sub-total of the current order.
      *
-     * @return float 
+     * @return float
      */
     public function calculateTotoal()
     {
         $sum = 0.0;
-        foreach($this->getOrderLines() as $orderLine) {
-            $sum += $orderLine->getProduct()->getUnitPrice()*$orderLine->getQuantity();
+        foreach ($this->getOrderLines() as $orderLine) {
+            $sum += $orderLine->getProduct()->getUnitPrice() * $orderLine->getQuantity();
         }
+
         return $sum;
     }
 
@@ -169,4 +174,17 @@ class Order
         return $this;
     }
 
+    public function removeLine(OrderLine $line)
+    {
+        foreach ($this->getOrderLines() as $orderLine) {
+            $result = false;
+            if ($orderLine->getProduct()->getId() == $line->getProduct()->getId()) {
+                $result = $this->orderLines->removeElement($orderLine);
+
+                return $result;
+            } else {
+                return $result;
+            }
+        }
+    }
 }

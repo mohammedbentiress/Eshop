@@ -21,7 +21,7 @@ class OrderLine
 
     /**
      * @Assert\NotBlank
-     * 
+     *
      * @Assert\NotNull(
      *      message="Please provide a valid Quantity"
      * )
@@ -135,6 +135,6 @@ class OrderLine
      */
     public function totalOrderLine():float
     {
-        return $this->getQuantity()*$this->getProduct()->getUnitPrice();    
+        return $this->getQuantity()*$this->getProduct()->getUnitPrice();
     }
 }

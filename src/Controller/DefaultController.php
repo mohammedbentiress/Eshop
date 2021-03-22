@@ -10,10 +10,10 @@ use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Service\Cart;
 use App\Service\Mailer;
+use App\Service\Whishlist;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -80,11 +80,11 @@ class DefaultController extends AbstractController
      *
      * @return Response the response instance
      */
-    public function user(Cart $cart, SessionInterface $session): Response
+    public function user(Cart $cart, Whishlist $wishes): Response
     {
         return $this->render('default/user.html.twig', [
             'cart' => $cart->getCart(),
-            'wishes' => $session->get('WISHES'),
+            'wishes' => $wishes->getWishes(),
         ]);
     }
 

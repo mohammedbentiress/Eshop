@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Entity\OrderLine;
-use App\Entity\Product;
 use App\Entity\Shipping;
 use App\Event\CartPlacedEvent;
 use App\Form\CheckoutType;
@@ -72,30 +70,6 @@ class CartController extends AbstractController
         $session->clear();
 
         return $this->redirectToRoute('default', [], Response::HTTP_FOUND);
-    }
-
-    /**
-     * Add an orderline from wish list to cart.
-     *
-     * @Route("/wishesList/addTocart/{id}/{qt}", name = "wishes_add_cart")
-     */
-    public function wishesToCart(
-        Product $product,
-        int $qt,
-        Cart $cart,
-        TranslatorInterface $translator
-        ): Response {
-        $order = $cart->getCart();
-        $orderLine = new OrderLine();
-        $orderLine->setProduct($product)
-                ->setQuantity($qt)
-                ->setCart($order);
-        $cart->addToCart($orderLine);
-
-        $message = $translator->trans('Product is added to your cart, please check it out');
-        $this->addFlash('success', $message);
-
-        return $this->redirectToRoute('wishesList', [], Response::HTTP_FOUND);
     }
 
     /**
